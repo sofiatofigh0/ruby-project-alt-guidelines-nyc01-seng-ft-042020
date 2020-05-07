@@ -1,3 +1,10 @@
 require_relative '../config/environment'
 
-puts "hello world"
+cli = CLI.new
+cli.execute_all
+#cli.abv
+
+
+
+
+
