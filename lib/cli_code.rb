@@ -134,7 +134,7 @@ def drink_valid?
 
 def ask
  @consumed_drinks=[]
-  until @consumed_drinks.size >= 15
+  until @consumed_drinks.count >= 15
     sleep(1)
     puts "So, what's your poison?"
   @chosen_cocktail=gets.chomp.titleize
@@ -154,18 +154,19 @@ def ask
   end
     @consumed_drinks << @chosen_cocktail
     puts "Here's a list of drinks you've had thus far: #{@consumed_drinks.inspect}"
+    if @consumed_drinks.count >= 7
+      @new_user.update(name: "I cnat memberrrr ma name no more")
+       puts @new_user.name
+     end
   end
 end
 
 def update_and_delete
-  if @consumed_drinks.count >= 5
-     @new_user.update(name: "I cnat memberrrr ma name no more")
-      puts @new_user.name
-  elsif @consumed_drinks.count > 8
+  if @consumed_drinks.count > 12
      @new_user.destroy
       puts "I am literally destroyed."
-    end
   end
+end
 
 def execute_all
   run
@@ -183,10 +184,18 @@ def execute_all
   display
   sleep (1)
   ask
-  update_and_delete
 end
 
 end
+
+
+
+
+
+
+
+
+
 
 # def BAC
 
